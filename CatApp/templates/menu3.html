@@ -1,0 +1,87 @@
+{% extends 'base.html'%}
+{% block title %}Menu{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="text-info mb-2"><font size="6"><strong>{{rname}}</strong></font></h1>
+		<p>
+		<font size="3"><b>Info : </b><a class="text-success"><strong>{{rinfo|safe}}</strong></a>
+		<br/>
+		<b>Location: </b><a class="text-success"><strong>{{rlocation}}</strong></a>
+		<br>
+	</div>
+
+	<br>
+	<div class="container">
+		<input type="button" class="btn btn-success btn-lg pull-right" onclick="storearray();" value="Checkout"/>
+	</div>
+	<div class="container ">
+			<h3 class="text-danger"><font size="5"><strong>Menu</strong></font></h3>
+			<br>
+				<table class="table table-hover table-bordered">
+					<thead>
+						<th>Item Name</th>
+						
+						<th>Price</th>
+						<th>Add</th>
+					</thead>
+					{% for x in items %}
+					<tr>
+					<td>{{x.item_name}}</td>
+					
+					<td>&#x20b9; {{x.price}}</td>
+					
+					<td>
+                  <div class="form-group" style="width:40%;">
+     
+            		<div class="input-group-btn">
+                		<button id="down" class="btn btn-default" 
+      				 onclick="if(document.querySelector('#itemno{{x.id}}').innerHTML>0){
+                	document.querySelector('#itemno{{x.id}}').innerHTML--;
+                	minuscounter('{{x.id}}');
+                	}">
+                <span class="glyphicon glyphicon-minus">-</span></button>
+            </div>
+            <span id='itemno{{x.id}}'> 0 </span>
+            <div class="input-group-btn">
+                <button id="up" class="btn btn-default" 
+                onclick="{
+                	document.querySelector('#itemno{{x.id}}').innerHTML++;
+                	pluscounter('{{x.id}}');
+                	}"><span class="glyphicon glyphicon-plus">+</span></button>
+            	</div>
+        		</div>	
+					</td>
+					
+					{% endfor %}
+				</tr>
+				</table>
+	</div>
+<br>
+<script type="text/javascript">
+	
+var cart = [];
+	function pluscounter(pk){
+		cart.push(pk);
+		console.log(cart);
+	};
+	function minuscounter(pk){
+		if (cart!=[]){
+			var removeindex = cart.indexOf(pk);
+			cart.splice(removeindex, 1);
+			}
+			console.log(cart);
+	};
+
+	function storearray(){
+		if(cart.length === 0)
+		{
+			alert('No items selected');
+			return false;
+		}
+		document.cookie = "cart="+cart+";Path=/";
+		document.cookie ="rest={{restid}};Path=/";
+		window.location = "/catering/checkout/";
+	};
+</script>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html'%}
+{% block title %}YOUR ORDERS{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+        <h1 class="text-center text-danger"><strong>ORDERS</strong></h1>
+</div>
+<br>
+<div class="container">
+    <div class="col-sm-4 col-sm-offset-3">
+      <form class="form-horizontal" role="search" method="get" action=''>
+         <div class="form-group ">
+         <div class="input-group">  
+            
+         </span>
+        </div>
+     </div>
+   </form>
+
+ </div>
+</div> 
+<br>
+<br>
+	<div class="container">
+		<div class="row">
+		{% for rest in b_object %}
+        <div class="col-xs-7 col-md-6">
+      <div class="thumbnail">
+   		   <div class="media mb-2 ml-8" style="border-radius: 10px; border-style: groove; border-width: 2px;">
+        
+           
+        </a>
+        <div class="media-body pl-4">
+            <strong>{{rest.orderedBy}}</strong></h1></a>
+            <h6 class="text-secondary"><font size="2"><strong>{{rest.owner}}</strong></font></h6>
+            <h6 class="text-secondary"><font size="2"><strong>{{rest.event_location}}</strong></font></h6>
+
+            <h4><font size="2">Total Amt: &#x20b9; {{rest.total_amount}}</font></h4>
+          	<h5><font size="3">Status: <strong class="text-success">{{rest.status}}</strong></font></h5>
+
+        </div>
+         
+    </div>
+
+  </div>
+</div>
+
+{% endfor%}
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html'%}
+{% block title %}Caterings{% endblock %}
+
+{% block body %}
+
+<h1 class="text-center text-danger"><strong>Caterings</strong></h1>
+
+<br>
+<br>
+<br>
+	<div class="container">
+		<div class="row">
+		{% for j in r_object %}
+        <div class="col-xs-7 col-md-6">
+      <div class="thumbnail">
+   		   <div class="media mb-2 ml-8" style="border-radius: 10px; border-style: groove; border-width: 2px;">
+          <a href="/catering/{{j.pk}}/" class="pull-left ">
+            <img src="{{j.r_logo.url}}" class="img-thumbnail img-responsive " style="height: 130px; width: 130px;">
+        </a>
+        <div class="media-body pl-4">
+                     <h4><font size="4"><strong>{{j.catering_name}}</strong></font></h4>
+                     <h6 class="text-secondary"><font size="2"><strong>{{j.about_info}}</strong></font></h6>
+                     
+            
+
+        </div>
+         
+    </div>
+
+  </div>
+</div>
+
+{% endfor%}
+</div>
+</div>
+
+{% endblock %}

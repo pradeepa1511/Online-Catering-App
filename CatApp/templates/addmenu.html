@@ -1,0 +1,23 @@
+{% extends 'base2.html' %}
+{% block body %}
+    <h2>ADD ITEMS</h2>
+    <!-- <form method="POST" class="post-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit"  value="Create" class="btn btn-primary">
+        <div class="text-center"><input type="submit"  value="Add"></div>
+    </form> -->
+
+    <form id="menuform" method="POST" action="menu">
+        {% csrf_token %}
+        <input type="text" name="item_name" id="item_name">
+        <input type="number" name="price" id="price">
+        <input type="submit" value="Add">
+    </form>
+
+    {% for i in menus %}
+    <h1>{{i.item_name}}</h1>
+    <p>{{i.price}}</p>
+    <a href="{% url 'delete_menu' i.id %}" class="btn btn-sm btn-danger">Delete</a>
+    {% endfor %}
+{% endblock %}
